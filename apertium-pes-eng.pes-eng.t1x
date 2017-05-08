@@ -1532,7 +1532,66 @@
       </action>
     </rule>
 	
-	<rule comment="18.could + vaux-have + been + verb-pp"> 
+	<rule comment="18.noun_ra + noun + verb">
+  	<pattern>
+	<pattern-item n="nom"/>
+  	 <pattern-item n="c_ra"/>
+	 <pattern-item n="nom"/>
+	 <pattern-item n="vrb"/>
+	   </pattern>
+  	   <action>
+        <call-macro n="third_person"><with-param pos="4"/></call-macro>
+        <call-macro n="was-were"><with-param pos="4"/></call-macro>
+		 <out>
+  	      <chunk name="noun-ra-verb">
+          <tags>
+            <tag><lit-tag v="SNRAV"/></tag>
+            <tag><clip pos="1" side="tl" part="a_nbr"/></tag>
+            <tag><clip pos="4" side="tl" part="a_tense"/></tag>
+	        <tag><clip pos="4" side="tl" part="a_pers"/></tag>
+		   </tags>
+		    <lu>
+        <lit v="the"/>
+        <lit-tag v="det"/>
+        <lit-tag v="def"/>
+        <lit-tag v="sp"/>
+		 </lu>
+	   <b/>
+		   <lu>
+           <clip pos="1" side="tl" part="lem"/>
+           <clip pos="1" side="tl" part="a_pronom"/>
+           <clip pos="1" side="tl" part="a_nbr" link-to="2"/>
+           <clip pos="1" side="tl" part="a_unk"/>
+         </lu>
+			<b/>
+			<lu>
+        <lit v="the"/>
+        <lit-tag v="det"/>
+        <lit-tag v="def"/>
+        <lit-tag v="sp"/>
+		 </lu>
+	   <b/>
+		   <lu>
+           <clip pos="3" side="tl" part="lem"/>
+           <clip pos="3" side="tl" part="a_pronom"/>
+           <clip pos="3" side="tl" part="a_nbr" link-to="2"/>
+           <clip pos="3" side="tl" part="a_unk"/>
+         </lu>
+			<lu>
+          <clip pos="4" side="tl" part="lem"/>
+          <clip pos="4" side="tl" part="a_verb"/>
+          <clip pos="4" side="tl" part="a_tense" link-to="3"/>
+           <var n="third_p_sg"/>
+           <var n="was_were"/>
+        </lu>
+		    <b/>
+			
+  	     </chunk>
+		</out>
+  	    </action>
+  	</rule>
+	
+	<rule comment="19.could + vaux-have + been + verb-pp"> 
       <pattern>
         <pattern-item n="passive-verb-pp"/> 
        </pattern>
@@ -1634,7 +1693,7 @@
       </action>
     </rule>
 	
-	<rule comment="19.vaux-have + not + verb-pp"> 
+	<rule comment="20.vaux-have + not + verb-pp"> 
       <pattern>
         <pattern-item n="verb-pp-neg"/> 
        </pattern>
@@ -1712,7 +1771,7 @@
       </action>
     </rule>
 	
-	<rule comment="20.could + not + vaux-have + verb-pp"> 
+	<rule comment="21.could + not + vaux-have + verb-pp"> 
       <pattern>
         <pattern-item n="pstsub-neg"/> 
        </pattern>
@@ -1761,7 +1820,7 @@
       </action>
     </rule>
 	
-<rule comment="21.could + vaux-have + verb-pp"> 
+<rule comment="22.could + vaux-have + verb-pp"> 
       <pattern>
         <pattern-item n="verb-pp"/> 
        </pattern>
@@ -1856,7 +1915,7 @@
       </action>
     </rule>
     
-  <rule comment="22.be + being + pp "> 
+  <rule comment="23.be + being + pp "> 
   <pattern> 
     <pattern-item n="verb-ing-pp"/>  
    </pattern>
@@ -1932,7 +1991,7 @@
   </action>
   </rule>
 	
-	<rule comment="23.c_vauxp"> 
+	<rule comment="24.c_vauxp"> 
   <pattern> 
     <pattern-item n="c_vauxp"/>  
    </pattern>
@@ -1964,7 +2023,7 @@
     </action>
   </rule>
 	
-<rule comment="24.be + verb-ing "> 
+<rule comment="25.be + verb-ing "> 
   <pattern> 
     <pattern-item n="verb-ing"/>  
    </pattern>
@@ -2034,7 +2093,7 @@
   </action>
   </rule>
   
-  <rule comment="25.will + be + pp"> 
+  <rule comment="26.will + be + pp"> 
   <pattern> 
     <pattern-item n="will-verb-pp"/>  
    </pattern>
@@ -2081,7 +2140,7 @@
   </action>
 </rule>
   
-<rule comment="26.will + verb"> 
+<rule comment="27.will + verb"> 
   <pattern> 
     <pattern-item n="will-verb"/>  
    </pattern>
@@ -2121,7 +2180,7 @@
   </action>
 </rule>
 
-<rule comment="27.prn + vaux"> 
+<rule comment="28.prn + vaux"> 
   <pattern> 
     <pattern-item n="prn"/>  
    <pattern-item n="c_vaux"/>  
@@ -2155,7 +2214,45 @@
   </action>
 </rule>
 
-<rule comment="28.vaux + simple verb"> 
+<rule comment="29.simple negative passive past/present verb"> 
+  <pattern> 
+    <pattern-item n="c_pvrbneg"/>  
+   </pattern>
+  <action>
+    <call-macro n="nbr-pers"><with-param pos="1"/></call-macro>
+	 <call-macro n="check-not"><with-param pos="1"/></call-macro>
+	<call-macro n="was-were"><with-param pos="1"/></call-macro>
+	<call-macro n="third_person"><with-param pos="1"/></call-macro>
+	<out>
+	  <chunk name="SPVNEG">
+        <tags>
+          <tag><lit-tag v="SPVNEG"/></tag>
+            
+		    <tag><clip pos="1" side="tl" part="a_pers"/></tag>
+            <tag><clip pos="1" side="tl" part="a_tense"/></tag>
+	        <tag><clip pos="1" side="tl" part="a_nbr"/></tag>
+	  </tags>
+      <lu>
+        <lit v="be"/>
+        <lit-tag v="vbser"/>
+        <clip pos="1" side="tl" part="a_tense"/>
+        <var n="was_were"/>
+        <var n="third_p_sg"/>
+	  </lu>
+      <var n="neg_var"/>
+      <b/>
+      <lu>
+          <clip pos="1" side="tl" part="lem"/>
+          <clip pos="1" side="tl" part="a_verb"/>
+           <lit-tag v="pp"/>
+          
+        </lu>
+      </chunk>
+     </out>
+    </action>
+  </rule>
+  
+  <rule comment="30.vaux + simple verb"> 
   <pattern> 
     <pattern-item n="c_vaux"/>  
    <pattern-item n="vrb"/>  
@@ -2195,46 +2292,7 @@
     </out>
   </action>
 </rule>
-  
-<rule comment="29.simple negative passive past/present verb"> 
-  <pattern> 
-    <pattern-item n="c_pvrbneg"/>  
-   </pattern>
-  <action>
-    <call-macro n="nbr-pers"><with-param pos="1"/></call-macro>
-	 <call-macro n="check-not"><with-param pos="1"/></call-macro>
-	<call-macro n="was-were"><with-param pos="1"/></call-macro>
-	<call-macro n="third_person"><with-param pos="1"/></call-macro>
-	<out>
-	  <chunk name="SPVNEG">
-        <tags>
-          <tag><lit-tag v="SPVNEG"/></tag>
-            
-		    <tag><clip pos="1" side="tl" part="a_pers"/></tag>
-            <tag><clip pos="1" side="tl" part="a_tense"/></tag>
-	        <tag><clip pos="1" side="tl" part="a_nbr"/></tag>
-	  </tags>
-      <lu>
-        <lit v="be"/>
-        <lit-tag v="vbser"/>
-        <clip pos="1" side="tl" part="a_tense"/>
-        <var n="was_were"/>
-        <var n="third_p_sg"/>
-	  </lu>
-      <var n="neg_var"/>
-      <b/>
-      <lu>
-          <clip pos="1" side="tl" part="lem"/>
-          <clip pos="1" side="tl" part="a_verb"/>
-           <lit-tag v="pp"/>
-          
-        </lu>
-      </chunk>
-     </out>
-    </action>
-  </rule>
-  
-  <rule comment="30.simple passive past/present verb"> 
+  <rule comment="31.simple passive past/present verb"> 
   <pattern> 
     <pattern-item n="c_pvrb"/>  
    </pattern>
@@ -2269,7 +2327,7 @@
     </action>
   </rule>
   
-<rule comment="31.vbdo, not, verb">
+<rule comment="32.vbdo, not, verb">
   <pattern>
   	 <pattern-item n="c_negvrb"/>
   </pattern>
@@ -2303,42 +2361,6 @@
      </out>
     </action>
 </rule>
- 
-<rule comment="32.simple past/present verb"> 
-  <pattern> 
-    <pattern-item n="vrb"/>  
-   </pattern>
-  <action>
-    <call-macro n="nbr-pers"><with-param pos="1"/></call-macro>
-    <call-macro n="third_person"><with-param pos="1"/></call-macro>
-    <call-macro n="was-were"><with-param pos="1"/></call-macro>
-    <out>
-      <chunk name="Simple_SV">
-        <tags>
-          <tag><lit-tag v="SV"/></tag>
-          <tag><clip pos="1" side="tl" part="a_pers"/></tag>
-          <tag><clip pos="1" side="tl" part="a_tense"/></tag>
-        </tags>
-    <!--<lu>
-          <lit v="prpers"/>
-          <lit-tag v="prn"/>
-          <lit-tag v="subj"/>
-          <clip pos="1" side="tl" part="a_pers"/>
-          <clip pos="1" side="tl" part="a_gender"/>
-          <var n="new_nbr"/>
-        </lu>
-        <b/>-->
-        <lu>
-          <clip pos="1" side="tl" part="lem"/>
-          <clip pos="1" side="tl" part="a_verb"/>
-          <clip pos="1" side="tl" part="a_tense" link-to="3"/>
-          <var n="third_p_sg"/>
-          <var n="was_were"/>
-        </lu>
-      </chunk>
-     </out>
-    </action>
-  </rule>
 
 <rule comment="33.vaux + simple verb + preposition + noun"> 
   <pattern> 
@@ -2392,7 +2414,43 @@
   </action>
 </rule>
 
-<rule comment="34.vaux + simple verb + noun-pos + ra"> 
+<rule comment="34.simple past/present verb"> 
+  <pattern> 
+    <pattern-item n="vrb"/>  
+   </pattern>
+  <action>
+    <call-macro n="nbr-pers"><with-param pos="1"/></call-macro>
+    <call-macro n="third_person"><with-param pos="1"/></call-macro>
+    <call-macro n="was-were"><with-param pos="1"/></call-macro>
+    <out>
+      <chunk name="Simple_SV">
+        <tags>
+          <tag><lit-tag v="SV"/></tag>
+          <tag><clip pos="1" side="tl" part="a_pers"/></tag>
+          <tag><clip pos="1" side="tl" part="a_tense"/></tag>
+        </tags>
+    <!--<lu>
+          <lit v="prpers"/>
+          <lit-tag v="prn"/>
+          <lit-tag v="subj"/>
+          <clip pos="1" side="tl" part="a_pers"/>
+          <clip pos="1" side="tl" part="a_gender"/>
+          <var n="new_nbr"/>
+        </lu>
+        <b/>-->
+        <lu>
+          <clip pos="1" side="tl" part="lem"/>
+          <clip pos="1" side="tl" part="a_verb"/>
+          <clip pos="1" side="tl" part="a_tense" link-to="3"/>
+          <var n="third_p_sg"/>
+          <var n="was_were"/>
+        </lu>
+      </chunk>
+     </out>
+    </action>
+  </rule>
+
+<rule comment="35.vaux + simple verb + noun-pos + ra"> 
   <pattern> 
     <pattern-item n="c_vaux"/>  
    <pattern-item n="pos"/>
@@ -2451,7 +2509,7 @@
   </action>
 </rule>
 
- <rule comment="35.vaux + simple verb + pro-noun + ra"> 
+ <rule comment="36.vaux + simple verb + pro-noun + ra"> 
   <pattern> 
     <pattern-item n="c_vaux"/>  
    <pattern-item n="nom"/>
@@ -2501,7 +2559,7 @@
   </action>
 </rule>
 
-<rule comment="36.vaux + nom-pos + ra"> 
+<rule comment="37.vaux + nom-pos + ra"> 
   <pattern>   
    <pattern-item n="c_vaux"/>  
     <pattern-item n="pos"/>
@@ -2542,7 +2600,7 @@
   </action>
 </rule>
 
-<rule comment="37.vaux + nom + ra"> 
+<rule comment="38.vaux + nom + ra"> 
   <pattern>   
    <pattern-item n="c_vaux"/>  
     <pattern-item n="nom"/>
@@ -2573,7 +2631,7 @@
   </action>
 </rule>
 
-<rule comment="38.preposition + possessive-adj + noun + verb"> 
+<rule comment="39.preposition + possessive-adj + noun + verb"> 
   <pattern> 
     <pattern-item n="preposition"/>
 	<pattern-item n="pos"/>
@@ -2627,7 +2685,7 @@
  
  
  
- <rule comment="39.preposition + dem + nom"> 
+ <rule comment="40.preposition + dem + nom"> 
   <pattern> 
     <pattern-item n="preposition"/>
 	<pattern-item n="adjective"/>
@@ -2690,7 +2748,7 @@
     </action>
   </rule>
  
- <rule comment="40.noun + noun-pos + ra + verb"> 
+ <rule comment="41.noun + noun-pos + ra + verb"> 
     <pattern> 
 	   <pattern-item n="nom"/>
 	   <pattern-item n="pos"/>
@@ -2746,7 +2804,7 @@
    </action>
   </rule>
  
- <rule comment="41. noun + + pr + noun-pos + verb"> 
+ <rule comment="42. noun + + pr + noun-pos + verb"> 
   <pattern> 
 	<pattern-item n="nom"/>
 	<pattern-item n="preposition"/>
@@ -2805,7 +2863,7 @@
     </action>
   </rule>
  
- <rule comment="42. noun + + pr + noun + verb"> 
+ <rule comment="43. noun + + pr + noun + verb"> 
   <pattern> 
 	<pattern-item n="nom"/>
 	<pattern-item n="preposition"/>
@@ -2854,7 +2912,7 @@
     </action>
   </rule>
  
- <rule comment="43.preposition + nom + adjective"> 
+ <rule comment="44.preposition + nom + adjective"> 
   <pattern> 
     <pattern-item n="preposition"/>
     <pattern-item n="nom"/>
@@ -2891,7 +2949,7 @@
     </action>
   </rule>
   
- <rule comment="44.preposition + nom + nom"> 
+ <rule comment="45.preposition + nom + nom"> 
   <pattern> 
     <pattern-item n="preposition"/>
     <pattern-item n="nom"/>
@@ -2928,7 +2986,8 @@
     </action>
   </rule>
  
- <rule comment="61.noun + ra + pr + noun + noun + verb"> 
+
+ <rule comment="46.noun + ra + pr + noun + noun + verb"> 
   <pattern> 
     <pattern-item n="nom"/>
     <pattern-item n="c_ra"/>
@@ -2993,7 +3052,7 @@
     </action>
   </rule>
  
- <rule comment="45.preposition + nom + verb"> 
+ <rule comment="47.preposition + nom + verb"> 
   <pattern> 
     <pattern-item n="preposition"/>
     <pattern-item n="nom"/>
@@ -3035,7 +3094,7 @@
     </action>
   </rule>
 
-  <rule comment="46.preposition + noun-pos"> 
+  <rule comment="48.preposition + noun-pos"> 
   <pattern> 
     <pattern-item n="preposition"/>
     <pattern-item n="pos"/>    
@@ -3073,7 +3132,7 @@
     </action>
   </rule>
   
-<rule comment="47.preposition + noun"> 
+<rule comment="49.preposition + noun"> 
   <pattern> 
     <pattern-item n="preposition"/>
     <pattern-item n="nom"/>    
@@ -3101,7 +3160,7 @@
     </action>
   </rule>
 
-  <rule comment="48. adv + adj + verb">
+  <rule comment="50. adv + adj + verb">
   	 <pattern>
 	   <pattern-item n="c_adverb"/>
 	  <pattern-item n="adjective"/>
@@ -3171,7 +3230,7 @@
     </action>
   </rule>
   
-  <rule comment="49. adv + adj">
+  <rule comment="51. adv + adj">
   	 <pattern>
 	   <pattern-item n="c_adverb"/>
 	  <pattern-item n="adjective"/>
@@ -3228,7 +3287,7 @@
     </action>
   </rule>
   
-  <rule comment="50. adv/adj">
+  <rule comment="52. adv/adj">
   	 <pattern>
 	   <pattern-item n="adjective"/>
 	   </pattern>
@@ -3276,7 +3335,7 @@
     </action>
   </rule>
   
-   <rule comment="51. adv/adj">
+   <rule comment="53. adv/adj">
   	 <pattern>
 	   <pattern-item n="c_adverb"/>
 	   </pattern>
@@ -3298,7 +3357,7 @@
     </action>
   </rule>
   
-   <rule comment="52.verb + and + verb"> 
+   <rule comment="54.verb + and + verb"> 
   <pattern>  
     <pattern-item n="vrb"/>
     <pattern-item n="c_cnjcoo"/>    
@@ -3339,7 +3398,7 @@
     </action>
   </rule>
   
-  <rule comment="53.verb + to + verb"> 
+  <rule comment="55.verb + to + verb"> 
   <pattern>  
     <pattern-item n="vrb"/>   
     <pattern-item n="vrb"/>
@@ -3377,7 +3436,115 @@
     </action>
   </rule>
   
-  <rule comment="54.preposition + adverb"> 
+  <rule comment="56.noun + ra + verb"> 
+  <pattern> 
+    <pattern-item n="nom"/>
+    <pattern-item n="c_ra"/>
+	<pattern-item n="vrb"/>
+   </pattern>
+  <action>
+	 <call-macro n="third_person"><with-param pos="4"/></call-macro>
+	 <call-macro n="was-were"><with-param pos="4"/></call-macro>
+	<out>
+      <chunk name="noun-ra-verb">
+        <tags>
+          <tag><lit-tag v="SNRAPRNV"/></tag>
+          <tag><clip pos="4" side="tl" part="a_nbr"/></tag>
+          <tag><clip pos="4" side="tl" part="a_nom"/></tag>
+          <tag><clip pos="4" side="tl" part="a_tense"/></tag>
+		 </tags>
+       <lu>
+	   <clip pos="1" side="tl" part="lem"/>
+          <clip pos="1" side="tl" part="a_nom" link-to="3"/>
+          <clip pos="1" side="tl" part="a_nbr" link-to="2"/>
+           <clip pos="1" side="tl" part="a_unk"/>  
+     </lu>
+	 <b/>
+		<lu>
+        <lit v="prpers"/>
+        <lit-tag v="prn"/>
+        <lit-tag v="subj"/>
+        <clip pos="3" side="tl" part="a_pers"/>
+        <clip pos="3" side="tl" part="a_gender"/>
+        <var n="new_nbr"/>
+	 </lu>
+      <b/>
+	  <lu>
+		<clip pos="4" side="tl" part="lem"/>
+          <clip pos="4" side="tl" part="a_verb"/>
+          <clip pos="4" side="tl" part="a_tense" link-to="4"/>
+           <var n="third_p_sg"/>
+            <var n="was_were"/>
+		    </lu>
+	  </chunk>
+     </out>
+    </action>
+  </rule>
+ 
+ <rule comment="57.noun + ra + preposition + noun + verb"> 
+  <pattern> 
+    <pattern-item n="nom"/>
+    <pattern-item n="c_ra"/>
+	 <pattern-item n="preposition"/>
+	 <pattern-item n="nom"/>
+	<pattern-item n="vrb"/>
+   </pattern>
+  <action>
+	 <call-macro n="third_person"><with-param pos="4"/></call-macro>
+	 <call-macro n="was-were"><with-param pos="4"/></call-macro>
+	<out>
+      <chunk name="noun-ra-pr-noun-verb">
+        <tags>
+          <tag><lit-tag v="SNRAPRNV"/></tag>
+          <tag><clip pos="4" side="tl" part="a_nbr"/></tag>
+          <tag><clip pos="4" side="tl" part="a_nom"/></tag>
+          <tag><clip pos="5" side="tl" part="a_tense"/></tag>
+		 </tags>
+       <lu>
+	   <lit v="to"/>
+        <lit-tag v="pr"/>
+        <lit-tag v="sp"/>
+	    </lu>
+	    <b/>
+	   <lu>
+		<clip pos="5" side="tl" part="lem"/>
+          <clip pos="5" side="tl" part="a_verb"/>
+          <clip pos="5" side="tl" part="a_tense" link-to="4"/>
+           <var n="third_p_sg"/>
+            <var n="was_were"/>
+		    </lu>
+	    <b/>
+	   <lu>
+        <lit v="the"/>
+        <lit-tag v="det"/>
+        <lit-tag v="def"/>
+        <lit-tag v="sp"/>
+		 </lu>
+	    <b/>
+	   <lu>
+	   <clip pos="1" side="tl" part="lem"/>
+          <clip pos="1" side="tl" part="a_nom" link-to="3"/>
+          <clip pos="1" side="tl" part="a_nbr" link-to="2"/>
+           <clip pos="1" side="tl" part="a_unk"/>  
+     </lu>
+	 <b/>
+		<lu>
+  	       <clip pos="3" side="tl" part="lem"/>
+  	       <clip pos="3" side="tl" part="a_pr"/>
+		    </lu>
+        <b />
+	  <lu>
+	   <clip pos="4" side="tl" part="lem"/>
+          <clip pos="4" side="tl" part="a_nom" link-to="3"/>
+          <clip pos="4" side="tl" part="a_nbr" link-to="2"/>
+           <clip pos="4" side="tl" part="a_unk"/>  
+     </lu>
+	  </chunk>
+     </out>
+    </action>
+  </rule>
+  
+  <rule comment="58.preposition + adverb"> 
   <pattern>  
     <pattern-item n="preposition"/>
     <pattern-item n="c_adverb"/>    
@@ -3403,35 +3570,177 @@
     </action>
   </rule>
  
- <rule comment="55.adverb + nom"> 
-  <pattern>  
-    <pattern-item n="c_adverb"/>
-    <pattern-item n="nom"/>    
+ <rule comment="59.noun + pronoun + ra + preposition + noun + verb"> 
+  <pattern> 
+    <pattern-item n="nom"/>
+     <pattern-item n="c_pronom"/>
+	<pattern-item n="c_ra"/>
+	 <pattern-item n="preposition"/>
+	 <pattern-item n="nom"/>
+	<pattern-item n="vrb"/>
    </pattern>
   <action>
-    <out>
-      <chunk name="adverb-np">
+	 <call-macro n="third_person"><with-param pos="4"/></call-macro>
+	 <call-macro n="was-were"><with-param pos="4"/></call-macro>
+	<out>
+      <chunk name="noun-pronoun-ra-pr-noun-verb">
         <tags>
-          <tag><lit-tag v="SADNP"/></tag>
-          <tag><clip pos="2" side="tl" part="a_nbr"/></tag>
-        </tags>
-        <lu>
-          <clip pos="1" side="tl" part="lem"/>
-          <clip pos="1" side="tl" part="a_adv"/>
-        </lu>
-        <b/>
-        <lu>
-          <clip pos="2" side="tl" part="lem"/>
-           <clip pos="2" side="tl" part="a_nom"/>
-           <clip pos="2" side="tl" part="a_nbr" link-to="2"/>
-         <clip pos="2" side="tl" part="a_unk"/>
-          </lu>        
-      </chunk>
+          <tag><lit-tag v="SNRAPRNV"/></tag>
+          <tag><clip pos="1" side="tl" part="a_nbr"/></tag>
+          <tag><clip pos="1" side="tl" part="a_nom"/></tag>
+          <tag><clip pos="6" side="tl" part="a_tense"/></tag>
+		 </tags>
+      <lu>
+	   <clip pos="1" side="tl" part="lem"/>
+          <clip pos="1" side="tl" part="a_nom" link-to="3"/>
+          <clip pos="1" side="tl" part="a_nbr" link-to="2"/>
+           <clip pos="1" side="tl" part="a_unk"/>  
+     </lu>
+	   <b/>
+	   <lu>
+	   <lit v="to"/>
+        <lit-tag v="pr"/>
+        <lit-tag v="sp"/>
+	    </lu>
+	    <b/>
+	   <lu>
+		<clip pos="6" side="tl" part="lem"/>
+          <clip pos="6" side="tl" part="a_verb"/>
+          <clip pos="6" side="tl" part="a_tense" link-to="4"/>
+           <var n="third_p_sg"/>
+            <var n="was_were"/>
+		    </lu>
+	     <b/>
+		<lu>
+  	       <clip pos="4" side="tl" part="lem"/>
+  	       <clip pos="4" side="tl" part="a_pr"/>
+		    </lu>
+        <b />
+	  <lu>
+	   <clip pos="5" side="tl" part="lem"/>
+          <clip pos="5" side="tl" part="a_nom" link-to="3"/>
+          <clip pos="5" side="tl" part="a_nbr" link-to="2"/>
+           <clip pos="5" side="tl" part="a_unk"/>  
+     </lu>
+	  </chunk>
      </out>
     </action>
   </rule>
  
- <rule comment="56.preposition + verb + noun"> 
+ 
+  <rule comment="60. noun + ra + pr_pos + verb"> 
+  <pattern> 
+   <pattern-item n="nom"/>
+   <pattern-item n="c_ra"/>
+    <pattern-item n="pr_pos"/>
+    <pattern-item n="vrb"/>
+   </pattern>
+  <action>
+	 <call-macro n="third_person"><with-param pos="5"/></call-macro>
+	 <call-macro n="was-were"><with-param pos="5"/></call-macro>
+	  <call-macro n="nbr-pers"><with-param pos="5"/></call-macro>
+	<out>
+      <chunk name="noun--noun-ra-pr-pos-verb">
+        <tags>
+          <tag><lit-tag v="SNRAPRPOS"/></tag>
+          <tag><clip pos="1" side="tl" part="a_nbr"/></tag>
+          <tag><clip pos="1" side="tl" part="a_nom"/></tag>
+          <tag><clip pos="4" side="tl" part="a_tense"/></tag>
+		  <tag><clip pos="4" side="tl" part="a_gender"/></tag>
+		 </tags>
+         <lu>
+		<clip pos="4" side="tl" part="lem"/>
+          <clip pos="4" side="tl" part="a_verb"/>
+          <clip pos="4" side="tl" part="a_tense" link-to="4"/>
+           <var n="third_p_sg"/>
+            <var n="was_were"/>
+		    </lu>
+		 <b />
+		 <lu>
+        <lit v="the"/>
+        <lit-tag v="det"/>
+        <lit-tag v="def"/>
+        <lit-tag v="sp"/>
+		 </lu>
+		 <b/>
+		 <lu>
+            <clip pos="1" side="tl" part="lem"/>
+          <clip pos="1" side="tl" part="a_nom" link-to="3"/>
+          <clip pos="1" side="tl" part="a_nbr" link-to="2"/>
+           <clip pos="1" side="tl" part="a_unk"/>   
+         </lu>
+      <b/>
+		<lu>
+  	       <clip pos="3" side="tl" part="lem"/>
+  	       <clip pos="3" side="tl" part="a_pr"/>
+		    </lu>
+	  </chunk>
+     </out>
+    </action>
+  </rule>
+ 
+ <rule comment="61.noun noun + ra + pr_pos + verb"> 
+  <pattern> 
+   <pattern-item n="nom"/>
+   <pattern-item n="nom"/>
+   <pattern-item n="c_ra"/>
+    <pattern-item n="pr_pos"/>
+    <pattern-item n="vrb"/>
+   </pattern>
+  <action>
+	 <call-macro n="third_person"><with-param pos="5"/></call-macro>
+	 <call-macro n="was-were"><with-param pos="5"/></call-macro>
+	  <call-macro n="nbr-pers"><with-param pos="5"/></call-macro>
+	<out>
+      <chunk name="noun--noun-ra-pr-pos-verb">
+        <tags>
+          <tag><lit-tag v="SNRAPRPOS"/></tag>
+          <tag><clip pos="1" side="tl" part="a_nbr"/></tag>
+          <tag><clip pos="1" side="tl" part="a_nom"/></tag>
+          <tag><clip pos="5" side="tl" part="a_tense"/></tag>
+		  <tag><clip pos="5" side="tl" part="a_gender"/></tag>
+		 </tags>
+         <lu>
+            <clip pos="1" side="tl" part="lem"/>
+          <clip pos="1" side="tl" part="a_nom" link-to="3"/>
+          <clip pos="1" side="tl" part="a_nbr" link-to="2"/>
+           <clip pos="1" side="tl" part="a_unk"/>   
+         </lu>
+      <b/>
+		<lu>
+		<clip pos="5" side="tl" part="lem"/>
+          <clip pos="5" side="tl" part="a_verb"/>
+          <clip pos="5" side="tl" part="a_tense" link-to="4"/>
+           <var n="third_p_sg"/>
+            <var n="was_were"/>
+		    </lu>
+		 <b />
+		<lu>
+        <lit v="the"/>
+        <lit-tag v="det"/>
+        <lit-tag v="def"/>
+        <lit-tag v="sp"/>
+		 </lu>
+		 <b/>
+		<lu>
+		    <clip pos="2" side="tl" part="lem"/>
+          <clip pos="2" side="tl" part="a_nom" link-to="3"/>
+          <clip pos="2" side="tl" part="a_nbr" link-to="2"/>
+           <clip pos="2" side="tl" part="a_unk"/>  
+		</lu>
+        <b />
+		<lu>
+  	       <clip pos="4" side="tl" part="lem"/>
+  	       <clip pos="4" side="tl" part="a_pr"/>
+		    </lu>
+        <b />
+  	 
+	  </chunk>
+     </out>
+    </action>
+  </rule>
+ 
+ <rule comment="62.preposition + verb + noun"> 
   <pattern>  
     <pattern-item n="preposition"/>
     <pattern-item n="vrb"/>    
@@ -3466,7 +3775,7 @@
   </rule>
  
  
-<rule comment="57.noun + ra + adj + verb-pp">
+<rule comment="63.noun + ra + adj + verb-pp">
   	<pattern>
   	  <pattern-item n="nom"/>
 	   <pattern-item n="c_ra"/>
@@ -3554,7 +3863,7 @@
   	    </action>
   	</rule>
 
-<rule comment="58.noun + ra + adj + verb">
+<rule comment="64.noun + ra + adj + verb">
   	<pattern>
   	  <pattern-item n="nom"/>
 		  <pattern-item n="c_ra"/>
@@ -3601,7 +3910,35 @@
   	    </action>
   	</rule>
  
- <rule comment="59.preposition + pronoun + verb"> 
+ <rule comment="65.adverb + nom"> 
+  <pattern>  
+    <pattern-item n="c_adverb"/>
+    <pattern-item n="nom"/>    
+   </pattern>
+  <action>
+    <out>
+      <chunk name="adverb-np">
+        <tags>
+          <tag><lit-tag v="SADNP"/></tag>
+          <tag><clip pos="2" side="tl" part="a_nbr"/></tag>
+        </tags>
+        <lu>
+          <clip pos="1" side="tl" part="lem"/>
+          <clip pos="1" side="tl" part="a_adv"/>
+        </lu>
+        <b/>
+        <lu>
+          <clip pos="2" side="tl" part="lem"/>
+           <clip pos="2" side="tl" part="a_nom"/>
+           <clip pos="2" side="tl" part="a_nbr" link-to="2"/>
+         <clip pos="2" side="tl" part="a_unk"/>
+          </lu>        
+      </chunk>
+     </out>
+    </action>
+  </rule>
+ 
+ <rule comment="66.preposition + pronoun + verb"> 
     <pattern> 
       <pattern-item n="preposition"/>
       <pattern-item n="prn_subj"/>
@@ -3644,7 +3981,7 @@
    </action>
   </rule>
  
- <rule comment="60.preposition + pronoun-ref + verb"> 
+ <rule comment="67.preposition + pronoun-ref + verb"> 
     <pattern> 
       <pattern-item n="preposition"/>
       <pattern-item n="prn_ref"/>
@@ -3687,7 +4024,7 @@
    </action>
   </rule>
  
- <rule comment="61.noun + ra + pr_pos-noun-verb"> 
+ <rule comment="68.noun + ra + pr_pos-noun-verb"> 
   <pattern> 
     <pattern-item n="nom"/>
     <pattern-item n="c_ra"/>
@@ -3748,7 +4085,7 @@
     </action>
   </rule>
  
-  <rule comment="62.noun + ra + pr_pos"> 
+  <rule comment="69.noun + ra + pr_pos"> 
   <pattern> 
     <pattern-item n="nom"/>
     <pattern-item n="c_ra"/>
@@ -3778,7 +4115,7 @@
     </action>
   </rule>
  
- <rule comment="62.preposition-pos + verb"> 
+ <rule comment="70.preposition-pos + verb"> 
     <pattern> 
       <pattern-item n="pr_pos"/>
       <pattern-item n="vrb"/>
@@ -3823,7 +4160,7 @@
   </rule>
   
  
- <rule comment="63.pr-pos"> 
+ <rule comment="71.pr-pos"> 
   <pattern> 
     <pattern-item n="pr_pos"/>
    </pattern>
@@ -3853,7 +4190,7 @@
     </action>
   </rule>
  
-<rule comment="64.preposition + pronoun"> 
+<rule comment="72.preposition + pronoun"> 
     <pattern> 
       <pattern-item n="preposition"/>
       <pattern-item n="prn_subj"/>
@@ -3884,7 +4221,7 @@
    </action>
   </rule>
 
-  <rule comment="65.preposition + noun + pronoun-ref + verb"> 
+  <rule comment="73.preposition + noun + pronoun-ref + verb"> 
     <pattern> 
        <pattern-item n="preposition"/>
 	   <pattern-item n="nom"/>
@@ -3936,7 +4273,7 @@
    </action>
   </rule>
   
-  <rule comment="66.noun + pronoun-ref + ra + verb"> 
+  <rule comment="74.noun + pronoun-ref + ra + verb"> 
     <pattern> 
 	   <pattern-item n="nom"/>
 	   <pattern-item n="prn_ref"/>
@@ -3983,7 +4320,7 @@
    </action>
   </rule>
   
-  <rule comment="66.preposition + noun + pronoun + verb"> 
+  <rule comment="75.preposition + noun + pronoun + verb"> 
     <pattern> 
        <pattern-item n="preposition"/>
 	   <pattern-item n="nom"/>
@@ -4034,7 +4371,7 @@
    </action>
   </rule>
   
-  <rule comment="67.preposition + noun + pronoun-ref"> 
+  <rule comment="76.preposition + noun + pronoun-ref"> 
     <pattern> 
        <pattern-item n="preposition"/>
 	   <pattern-item n="nom"/>
@@ -4074,7 +4411,7 @@
    </action>
   </rule>
   
-    <rule comment="68.preposition + noun + pronoun"> 
+    <rule comment="77.preposition + noun + pronoun"> 
     <pattern> 
        <pattern-item n="preposition"/>
 	   <pattern-item n="nom"/>
@@ -4113,7 +4450,7 @@
    </action>
   </rule>
   
-  <rule comment="69.preposition + pronoun-ref"> 
+  <rule comment="78.preposition + pronoun-ref"> 
     <pattern> 
       <pattern-item n="preposition"/>
       <pattern-item n="prn_ref"/>
@@ -4144,7 +4481,7 @@
    </action>
   </rule>
   
-  <rule comment="70.preposition + dem + verb"> 
+  <rule comment="79.preposition + dem + verb"> 
   <pattern> 
     <pattern-item n="preposition"/>
 	<pattern-item n="c_dem"/>
@@ -4242,7 +4579,7 @@
   </rule>
 
   
-  <rule comment="71.preposition + dem + verb"> 
+  <rule comment="80.preposition + dem + verb"> 
   <pattern> 
     <pattern-item n="preposition"/>
 	<pattern-item n="c_dem"/>
@@ -4318,7 +4655,7 @@
     </action>
   </rule>
   
-<rule comment="72.preposition + dem + verb"> 
+<rule comment="81.preposition + dem + verb"> 
   <pattern> 
     <pattern-item n="preposition"/>
 	<pattern-item n="c_dem"/>
@@ -4361,7 +4698,7 @@
     </action>
   </rule>
   
-  <rule comment="73.dem + noun + ra + verb"> 
+  <rule comment="82.dem + noun + ra + verb"> 
   <pattern> 
 	<pattern-item n="c_dem"/>
 	<pattern-item n="nom"/>
@@ -4405,7 +4742,7 @@
     </action>
   </rule>
   
-  <rule comment="74.preposition + dem + verb"> 
+  <rule comment="83.preposition + dem + verb"> 
   <pattern> 
     <pattern-item n="preposition"/>
 	<pattern-item n="c_dem"/>
@@ -4513,7 +4850,7 @@
   </rule>
 
   
-  <rule comment="75.preposition + dem + nom + verb"> 
+  <rule comment="84.preposition + dem + nom + verb"> 
   <pattern> 
     <pattern-item n="preposition"/>
 	<pattern-item n="c_dem"/>
@@ -4597,7 +4934,7 @@
      </action>
   </rule>
   
-<rule comment="76.preposition + dem + nom + verb"> 
+<rule comment="85.preposition + dem + nom + verb"> 
   <pattern> 
     <pattern-item n="preposition"/>
 	<pattern-item n="c_dem"/>
@@ -4647,7 +4984,7 @@
     </action>
   </rule>
   
-  <rule comment="77.preposition + dem + nom"> 
+  <rule comment="86.preposition + dem + nom"> 
   <pattern> 
     <pattern-item n="preposition"/>
 	<pattern-item n="c_dem"/>
@@ -4684,7 +5021,7 @@
     </action>
   </rule>
   
-  <rule comment="78.dem + noun + verb"> 
+  <rule comment="87.dem + noun + verb"> 
   <pattern> 
 	<pattern-item n="c_dem"/>
 	<pattern-item n="nom"/>
@@ -4729,7 +5066,7 @@
     </action>
   </rule>
 
-<rule comment="79.deteminer + noun + ra"> 
+<rule comment="88.deteminer + noun + ra"> 
   <pattern> 
   <pattern-item n="c_dem"/>
   <pattern-item n="nom"/>
@@ -4759,7 +5096,7 @@
     </action>
   </rule>
 
-  <rule comment="80.deteminer + noun"> 
+  <rule comment="89.deteminer + noun"> 
   <pattern> 
   <pattern-item n="c_dem"/>
   <pattern-item n="nom"/>
@@ -4789,7 +5126,7 @@
     </action>
   </rule>
  
- <rule comment="81.determiner + be + possessive-adj + noun"> 
+ <rule comment="90.determiner + be + possessive-adj + noun"> 
   <pattern> 
     <pattern-item n="c_posrel"/>
    </pattern>
@@ -4848,7 +5185,7 @@
     </action>
   </rule>
 
- <rule comment="82.determiner + be + adj"> 
+ <rule comment="91.determiner + be + adj"> 
   <pattern> 
       <pattern-item n="c_adjrel"/>
    </pattern>
@@ -4896,7 +5233,7 @@
     </action>
   </rule>
 
-<rule comment="83.determiner + be + noun"> 
+<rule comment="92.determiner + be + noun"> 
   <pattern> 
       <pattern-item n="c_rel"/>
   <pattern-item n="nom"/>
@@ -4946,7 +5283,7 @@
     </action>
   </rule>
 
-  <rule comment="84.noun-pos + ra + adj + verb"> 
+  <rule comment="93.noun-pos + ra + adj + verb"> 
     <pattern> 
 	   <pattern-item n="pos"/>
 	   <pattern-item n="c_ra"/>
@@ -5000,7 +5337,7 @@
    </action>
   </rule>
   
-  <rule comment="85.noun + ra + adj + verb"> 
+  <rule comment="94.noun + ra + adj + verb"> 
     <pattern> 
 	   <pattern-item n="nom"/>
 	   <pattern-item n="c_ra"/>
@@ -5044,7 +5381,7 @@
    </action>
   </rule>
   
-<rule comment="86.preposition + adj + verb"> 
+<rule comment="95.preposition + adj + verb"> 
   <pattern> 
     <pattern-item n="preposition"/>
 	<pattern-item n="adjective"/>
@@ -5116,7 +5453,7 @@
     </action>
   </rule>
   
-  <rule comment="87. noun-pos + adv + adj + verb">
+  <rule comment="96. noun-pos + adv + adj + verb">
   	 <pattern>
 	   <pattern-item n="pos"/>
 	   <pattern-item n="c_adv"/>
@@ -5205,7 +5542,7 @@
     </action>
   </rule>
   
-  <rule comment="88. noun + adv + adj + verb">
+  <rule comment="97. noun + adv + adj + verb">
   	 <pattern>
 	   <pattern-item n="nom"/>
 	   <pattern-item n="c_adverb"/>
@@ -5284,7 +5621,7 @@
     </action>
   </rule>
  
- <rule comment="89.preposition + noun + adj-pos + verb"> 
+ <rule comment="98.preposition + noun + adj-pos + verb"> 
     <pattern> 
       <pattern-item n="preposition"/>
       <pattern-item n="nom"/>
@@ -5344,7 +5681,7 @@
    </action>
   </rule>
 
-<rule comment="90.preposition + noun-pos + adj + verb"> 
+<rule comment="99.preposition + noun-pos + adj + verb"> 
     <pattern> 
       <pattern-item n="preposition"/>
       <pattern-item n="pos"/>
@@ -5406,7 +5743,7 @@
    </action>
   </rule>
 
-<rule comment="91.preposition + noun + adj + verb"> 
+<rule comment="100.preposition + noun + adj + verb"> 
     <pattern> 
       <pattern-item n="preposition"/>
       <pattern-item n="nom"/>
@@ -5457,7 +5794,7 @@
    </action>
   </rule>
  
-  <rule comment="92.prn + adj + noun + verb"> 
+  <rule comment="101.prn + adj + noun + verb"> 
     <pattern> 
       <pattern-item n="preposition"/>
 	  <pattern-item n="adjective"/>
@@ -5507,7 +5844,7 @@
    </action>
   </rule>
  
-  <rule comment="93. noun-pos + adv + verb">
+  <rule comment="102. noun-pos + adv + verb">
   	 <pattern>
 	   <pattern-item n="pos"/>
 	   <pattern-item n="c_adv"/>
@@ -5559,7 +5896,7 @@
     </action>
   </rule>
   
-  <rule comment="94.adv + preposition + noun-pos + verb"> 
+  <rule comment="103.adv + preposition + noun-pos + verb"> 
     <pattern> 
 	  <pattern-item n="c_adv"/>
 	   <pattern-item n="preposition"/>
@@ -5618,7 +5955,7 @@
    </action>
   </rule>
   
-  <rule comment="95.adv + preposition + noun + verb"> 
+  <rule comment="104.adv + preposition + noun + verb"> 
     <pattern> 
 	   <pattern-item n="c_adv"/>
 	   <pattern-item n="preposition"/>
@@ -5667,7 +6004,7 @@
    </action>
   </rule>
   
-  <rule comment="96.possessive-adj + noun + ra + verb"> 
+  <rule comment="105.possessive-adj + noun + ra + verb"> 
   <pattern> 
     <pattern-item n="pos"/>
     <pattern-item n="c_ra"/>
@@ -5711,7 +6048,7 @@
     </action>
   </rule>
   
-  <rule comment="97.pos + verb-ser">
+  <rule comment="106.pos + verb-ser">
   	<pattern>
 	<pattern-item n="pos"/>
 	 <pattern-item n="c_vrbser"/>
@@ -5756,7 +6093,7 @@
   	    </action>
   	</rule>
   
-  <rule comment="98.noun + verb-ser">
+  <rule comment="107.noun + verb-ser">
   	<pattern>
 	<pattern-item n="nom"/>
 	 <pattern-item n="c_vrbser"/>
@@ -5791,7 +6128,7 @@
   	    </action>
   	</rule>
 	
- <rule comment="99.possessive-adj + noun + ra"> 
+ <rule comment="108.possessive-adj + noun + ra"> 
   <pattern> 
     <pattern-item n="pos"/>
     <pattern-item n="c_ra"/>
@@ -5823,7 +6160,7 @@
     </action>
   </rule>
 
-  <rule comment="100.noun-pos"> 
+  <rule comment="109.noun-pos"> 
   <pattern> 
     <pattern-item n="pos"/>
    </pattern>
@@ -5854,7 +6191,7 @@
     </action>
   </rule>
  
-  <rule comment="101.verb + noun-ra + nom">
+  <rule comment="110.verb + noun-ra + nom">
   	<pattern>
   	  <pattern-item n="c_pronom"/>
 		  <pattern-item n="c_ra"/>
@@ -5900,7 +6237,7 @@
   	    </action>
   	</rule>
  
- <rule comment="102.noun-pos + np + verb">
+ <rule comment="111.noun-pos + np + verb">
   	<pattern>
 	<pattern-item n="pos"/>
   	 <pattern-item n="c_np"/>
@@ -5952,7 +6289,7 @@
   	    </action>
   	</rule>
   
-   <rule comment="103.pr + nom + np + verb"> 
+   <rule comment="112.pr + nom + np + verb"> 
     <pattern> 
       <pattern-item n="preposition"/>
 	  <pattern-item n="nom"/>
@@ -6003,7 +6340,7 @@
    </action>
   </rule>
   
-   <!--<rule comment="104.prn + nom + np"> 
+   <!--<rule comment="113.prn + nom + np"> 
     <pattern> 
       <pattern-item n="preposition"/>
 	  <pattern-item n="nom"/>
@@ -6040,7 +6377,7 @@
    </action>
   </rule>-->
   
-  <rule comment="105.noun + np + verb">
+  <rule comment="114.noun + np + verb">
   	<pattern>
 	<pattern-item n="nom"/>
   	 <pattern-item n="c_np"/>
@@ -6082,7 +6419,7 @@
   	    </action>
   	</rule>
  
- <rule comment="106.pronoun + ra + verb"> 
+ <rule comment="115.pronoun + ra + verb"> 
     <pattern> 
       <pattern-item n="prn_subj"/>
       <pattern-item n="c_ra"/>
@@ -6120,7 +6457,7 @@
    </action>
   </rule>
  
-  <rule comment="107.prn + pronoun-ref + ra + verb-pp-neg"> 
+  <rule comment="116.prn + pronoun-ref + ra + verb-pp-neg"> 
     <pattern> 
       <pattern-item n="prn"/>
 	  <pattern-item n="prn_ref"/>
@@ -6211,7 +6548,7 @@
    </action>
   </rule>
  
-  <rule comment="108.prn + pronoun-ref + ra + verb"> 
+  <rule comment="117.prn + pronoun-ref + ra + verb"> 
     <pattern> 
       <pattern-item n="prn_subj"/>
 	  <pattern-item n="prn_ref"/>
@@ -6258,7 +6595,7 @@
    </action>
   </rule>
  
- <rule comment="109.pronoun-ref + ra + verb"> 
+ <rule comment="118.pronoun-ref + ra + verb"> 
     <pattern> 
       <pattern-item n="prn_ref"/>
       <pattern-item n="c_ra"/>
@@ -6296,7 +6633,7 @@
    </action>
   </rule>
  
-<rule comment="110.pronoun + pr + noun-pos + verb"> 
+<rule comment="119.pronoun + pr + noun-pos + verb"> 
     <pattern> 
       <pattern-item n="prn_subj"/>
       <pattern-item n="preposition"/>
@@ -6358,7 +6695,38 @@
    </action>
   </rule>
 
-<rule comment="110.pronoun + pr + noun + verb"> 
+   <rule comment="120.noun + ra"> 
+  <pattern> 
+    <pattern-item n="nom"/>
+    <pattern-item n="c_ra"/>    
+   </pattern>
+  <action>
+  <out>
+    <chunk name="nom-ra">
+       <tags>
+           <tag><lit-tag v="SNRA"/></tag>
+           <tag><clip pos="1" side="tl" part="a_nom"/></tag>
+           <tag><clip pos="1" side="tl" part="a_nbr"/></tag>
+       </tags>
+        <lu>
+        <lit v="the"/>
+        <lit-tag v="det"/>
+        <lit-tag v="def"/>
+        <lit-tag v="sp"/>
+		 </lu>
+	   <b/>
+	   <lu>
+          <clip pos="1" side="tl" part="lem"/>
+          <clip pos="1" side="tl" part="a_nom" link-to="2"/>
+          <clip pos="1" side="tl" part="a_nbr" link-to="3"/>
+            <clip pos="1" side="tl" part="a_unk"/>
+	</lu>        
+      </chunk>
+     </out>
+    </action>
+  </rule>
+  
+<rule comment="121.pronoun + pr + noun + verb"> 
     <pattern> 
       <pattern-item n="prn_subj"/>
       <pattern-item n="preposition"/>
@@ -6410,7 +6778,7 @@
    </action>
   </rule>
  
- <rule comment="111.verb + noun-ra">
+ <rule comment="122.verb + noun-ra">
   	<pattern>
 	<pattern-item n="nom"/>
   	 <pattern-item n="c_ra"/>
@@ -6453,7 +6821,7 @@
   	    </action>
   	</rule>
  
-<rule comment="112.pronoun-ref + ra + pr + noun"> 
+<rule comment="123.pronoun-ref + ra + pr + noun"> 
     <pattern> 
       <pattern-item n="prn_ref"/>
       <pattern-item n="c_ra"/>
@@ -6492,7 +6860,7 @@
    </action>
   </rule>
 
-<rule comment="113.pronoun + ra + pr + noun"> 
+<rule comment="124.pronoun + ra + pr + noun"> 
     <pattern> 
       <pattern-item n="prn_subj"/>
       <pattern-item n="c_ra"/>
@@ -6531,7 +6899,7 @@
    </action>
   </rule>
  
- <rule comment="114.pronoun + ra"> 
+ <rule comment="125.pronoun + ra"> 
     <pattern> 
       <pattern-item n="prn_subj"/>
       <pattern-item n="c_ra"/>
@@ -6557,7 +6925,7 @@
     </action>
   </rule>
  
-  <rule comment="115.pronoun-ref + ra"> 
+  <rule comment="126.pronoun-ref + ra"> 
     <pattern> 
       <pattern-item n="prn_ref"/>
       <pattern-item n="c_ra"/>
@@ -6583,7 +6951,7 @@
     </action>
   </rule>
  
- <rule comment="116. dem + noun + noun + ra + verb"> 
+ <rule comment="127. dem + noun + noun + ra + verb"> 
   <pattern> 
 	<pattern-item n="c_dem"/>
 	<pattern-item n="nom"/>
@@ -6641,7 +7009,7 @@
     </action>
   </rule>
  
- <rule comment="117.noun-pos + dem + ra"> 
+ <rule comment="128.noun-pos + dem + ra"> 
   <pattern> 
   <pattern-item n="pos"/>
   <pattern-item n="c_dem"/>
@@ -6681,7 +7049,7 @@
     </action>
   </rule>
  
- <rule comment="118.noun + dem + ra"> 
+ <rule comment="129.noun + dem + ra"> 
   <pattern> 
   <pattern-item n="nom"/>
   <pattern-item n="c_dem"/>
@@ -6711,7 +7079,7 @@
     </action>
   </rule>
 
-  <rule comment="119.dem + ra + verb"> 
+  <rule comment="130.dem + ra + verb"> 
   <pattern> 
 	<pattern-item n="c_dem"/>
     <pattern-item n="c_ra"/>  
@@ -6747,38 +7115,7 @@
     </action>
   </rule>
  
-  <rule comment="120.noun + ra"> 
-  <pattern> 
-    <pattern-item n="nom"/>
-    <pattern-item n="c_ra"/>    
-   </pattern>
-  <action>
-  <out>
-    <chunk name="nom-ra">
-       <tags>
-           <tag><lit-tag v="SNRA"/></tag>
-           <tag><clip pos="1" side="tl" part="a_nom"/></tag>
-           <tag><clip pos="1" side="tl" part="a_nbr"/></tag>
-       </tags>
-        <lu>
-        <lit v="the"/>
-        <lit-tag v="det"/>
-        <lit-tag v="def"/>
-        <lit-tag v="sp"/>
-		 </lu>
-	   <b/>
-	   <lu>
-          <clip pos="1" side="tl" part="lem"/>
-          <clip pos="1" side="tl" part="a_nom" link-to="2"/>
-          <clip pos="1" side="tl" part="a_nbr" link-to="3"/>
-            <clip pos="1" side="tl" part="a_unk"/>
-	</lu>        
-      </chunk>
-     </out>
-    </action>
-  </rule>
- 
- <rule comment="121.deteminer + ra + + pr + noun-pos"> 
+ <rule comment="131.deteminer + ra + + pr + noun-pos"> 
   <pattern> 
   <pattern-item n="c_dem"/>
   <pattern-item n="c_ra"/>
@@ -6824,7 +7161,7 @@
     </action>
   </rule>
 
-<rule comment="122.deteminer + ra + + pr + noun"> 
+<rule comment="132.deteminer + ra + + pr + noun"> 
   <pattern> 
   <pattern-item n="c_dem"/>
   <pattern-item n="c_ra"/>
@@ -6860,7 +7197,7 @@
     </action>
   </rule>
  
-  <rule comment="123. yek + nounind"> 
+  <rule comment="133. yek + nounind"> 
     <pattern> 
       <pattern-item n="c_det"/>
 	    <pattern-item n="nom"/>
@@ -6891,7 +7228,7 @@
     </action>
   </rule>
   
-  <rule comment="124. the + noun"> 
+  <rule comment="134. the + noun"> 
     <pattern> 
 	  <pattern-item n="c_defnom"/>
     </pattern>
@@ -6921,7 +7258,7 @@
     </action>
   </rule>
   
-   <rule comment="125. adj + cnjcoo + adj + verb"> 
+   <rule comment="135. adj + cnjcoo + adj + verb"> 
     <pattern> 
 	  <pattern-item n="adjective"/>
       <pattern-item n="c_cnjcoo"/>
@@ -6969,7 +7306,7 @@
     </action>
   </rule>
   
-  <rule comment="126. adv + adj + adj"> 
+  <rule comment="136. adv + adj + adj"> 
     <pattern> 
 	   <pattern-item n="c_adverb"/>
 	  <pattern-item n="adjective"/>
@@ -7015,7 +7352,7 @@
     </action>
   </rule>
   
-  <rule comment="127. adv + adv"> 
+  <rule comment="137. adv + adv"> 
     <pattern> 
 	  <pattern-item n="c_adverb"/>
 	 <pattern-item n="c_adverb"/>
@@ -7044,7 +7381,7 @@
     </action>
   </rule>
   
-  <rule comment="128. adj + adj"> 
+  <rule comment="138. adj + adj"> 
     <pattern> 
 	  <pattern-item n="adjective"/>
       <pattern-item n="c_cnjcoo"/>
@@ -7082,7 +7419,7 @@
     </action>
   </rule>
   
- <rule comment="129. more + adjective"> 
+ <rule comment="139. more + adjective"> 
     <pattern> 
 	  <pattern-item n="c_adjcomp"/>
     </pattern>
@@ -7112,7 +7449,38 @@
     </action>
   </rule>
 
- <rule comment="130. the + most + adjective"> 
+   <rule comment="140. yek + nounind + ra"> 
+    <pattern> 
+      <pattern-item n="c_det"/>
+	  <pattern-item n="nom"/>
+      <pattern-item n="c_ra"/>
+	</pattern>
+     <action>
+	   <out>
+         <chunk name="detind + noun + ra">
+          <tags>
+            <tag><lit-tag v="SDETIND"/></tag>
+            <tag><clip pos="2" side="tl" part="a_nbr"/></tag>
+      
+		  </tags>
+		  <lu>
+        <clip pos="1" side="tl" part="lem"/>
+           <clip pos="1" side="tl" part="a_det"/>
+           <clip pos="1" side="tl" part="a_nbr" link-to="2"/>
+         <lit-tag v="ind"/>
+         </lu>
+		 <b/>
+		 <lu>
+           <clip pos="2" side="tl" part="lem"/>
+           <clip pos="2" side="tl" part="a_nom"/>
+           <clip pos="2" side="tl" part="a_nbr" link-to="2"/>
+         </lu>
+        </chunk>
+       </out>
+    </action>
+  </rule>
+  
+ <rule comment="141. the + most + adjective"> 
     <pattern> 
 	  <pattern-item n="c_adjsup"/>
     </pattern>
@@ -7142,7 +7510,7 @@
     </action>
   </rule>
   
-   <rule comment="131. number + noun"> 
+   <rule comment="142. number + noun"> 
     <pattern> 
       <pattern-item n="c_num"/>
 	  <pattern-item n="nom"/>
@@ -7170,7 +7538,7 @@
     </action>
   </rule>
 
-  <rule comment="132. Pronoun"> 
+  <rule comment="143. Pronoun"> 
     <pattern> 
       <pattern-item n="prn"/>
     </pattern>
@@ -7194,33 +7562,8 @@
        </out>
     </action>
   </rule>
-  
-  <rule comment="133. noun"> 
-    <pattern> 
-      <pattern-item n="nom"/>
-    </pattern>
-     <action>
-       <out>
-         <chunk name="noun">
-          <tags>
-            <tag><lit-tag v="SN"/></tag>
-            <tag><clip pos="1" side="tl" part="a_nbr"/></tag>
-          </tags>
-         
-         <lu>
-           <clip pos="1" side="tl" part="lem"/>
-           <clip pos="1" side="tl" part="a_nom"/>
-           <clip pos="1" side="tl" part="a_nbr" link-to="2"/>
-         <clip pos="1" side="tl" part="a_unk"/>
-		 </lu>
-        </chunk>
-       </out>
-    </action>
-  </rule>
 
-  
-
-  <rule comment="134. np + np"> 
+  <rule comment="144. np + np"> 
     <pattern> 
       <pattern-item n="c_npant"/>
       <pattern-item n="nom"/>
@@ -7236,8 +7579,7 @@
          <lu>
            <clip pos="1" side="tl" part="lem"/>
            <clip pos="1" side="tl" part="a_npant"/>
-         
-        
+     
 		 </lu>
       <b/>
 	 <lu>
@@ -7251,7 +7593,7 @@
     </action>
   </rule>
   
-  <rule comment="135. Pronoun-ref"> 
+  <rule comment="145. Pronoun-ref"> 
     <pattern> 
       <pattern-item n="prn_ref"/>
     </pattern>
@@ -7276,7 +7618,7 @@
     </action>
   </rule>
   
-  <rule comment="136. preposition + Dem"> 
+  <rule comment="146. preposition + Dem"> 
     <pattern> 
       <pattern-item n="preposition"/>
       <pattern-item n="c_dem"/>
@@ -7304,7 +7646,7 @@
     </action>
   </rule>
   
-  <rule comment="137. Dem + ra"> 
+  <rule comment="147. Dem + ra"> 
     <pattern> 
       <pattern-item n="c_dem"/>
       <pattern-item n="c_ra"/>
@@ -7327,7 +7669,7 @@
     </action>
   </rule>
 
-  <rule comment="138.vaux + simple verb"> 
+  <rule comment="148.vaux + simple verb"> 
   <pattern> 
     <pattern-item n="c_vaux"/>  
    
@@ -7352,7 +7694,7 @@
   </action>
 </rule>
   
-<rule comment="139. Dem"> 
+<rule comment="149. Dem"> 
     <pattern> 
       <pattern-item n="c_dem"/>
     </pattern>
@@ -7375,7 +7717,30 @@
     </action>
   </rule>
 
-<rule comment="140. relation"> 
+ <rule comment="150. noun"> 
+    <pattern> 
+      <pattern-item n="nom"/>
+    </pattern>
+     <action>
+       <out>
+         <chunk name="noun">
+          <tags>
+            <tag><lit-tag v="SN"/></tag>
+            <tag><clip pos="1" side="tl" part="a_nbr"/></tag>
+          </tags>
+         
+         <lu>
+           <clip pos="1" side="tl" part="lem"/>
+           <clip pos="1" side="tl" part="a_nom"/>
+           <clip pos="1" side="tl" part="a_nbr" link-to="2"/>
+         <clip pos="1" side="tl" part="a_unk"/>
+		 </lu>
+        </chunk>
+       </out>
+    </action>
+  </rule>
+  
+<rule comment="151. relation"> 
     <pattern> 
       <pattern-item n="c_relation"/>
     </pattern>
@@ -7391,6 +7756,133 @@
            <clip pos="1" side="tl" part="a_an"/>
            <clip pos="1" side="tl" part="a_gender"/>
            <clip pos="1" side="tl" part="a_nbr"/>
+         </lu>
+        </chunk>
+       </out>
+    </action>
+  </rule>
+ 
+<rule comment="152. enclitic"> 
+    <pattern> 
+      <pattern-item n="c_enc"/>
+    </pattern>
+     <action>
+       <out>
+         <chunk name="Enc">
+          <tags>
+            <tag><lit-tag v="enc"/></tag>
+          </tags>
+         <lu>
+           <clip pos="1" side="tl" part="lem"/>
+           <clip pos="1" side="tl" part="a_enc"/>
+           <clip pos="1" side="tl" part="a_an"/>
+           <clip pos="1" side="tl" part="a_gender"/>
+           <clip pos="1" side="tl" part="a_nbr"/>
+         </lu>
+        </chunk>
+       </out>
+    </action>
+  </rule>
+ 
+ <rule comment="153. modal verb"> 
+    <pattern> 
+      <pattern-item n="c_vbmod"/>
+    </pattern>
+     <action>
+       <out>
+         <chunk name="Modal">
+          <tags>
+            <tag><lit-tag v="mod"/></tag>
+          </tags>
+         <lu>
+           <clip pos="1" side="tl" part="lem"/>
+           <clip pos="1" side="tl" part="a_vbmod"/>
+           <clip pos="1" side="tl" part="a_tense"/>
+           <clip pos="1" side="tl" part="a_pers"/>
+           <clip pos="1" side="tl" part="a_nbr"/>
+         </lu>
+        </chunk>
+       </out>
+    </action>
+  </rule>
+ 
+ <rule comment="154. postposition"> 
+    <pattern> 
+      <pattern-item n="c_post"/>
+    </pattern>
+     <action>
+       <out>
+         <chunk name="postposition">
+          <tags>
+            <tag><lit-tag v="post"/></tag>
+          </tags>
+         <lu>
+           <clip pos="1" side="tl" part="lem"/>
+           <clip pos="1" side="tl" part="a_post"/>
+           <clip pos="1" side="tl" part="a_pers"/>
+           <clip pos="1" side="tl" part="a_nbr"/>
+         </lu>
+        </chunk>
+       </out>
+    </action>
+  </rule>
+ 
+ <rule comment="155. number"> 
+    <pattern> 
+      <pattern-item n="c_num"/>
+    </pattern>
+     <action>
+       <out>
+         <chunk name="number">
+          <tags>
+            <tag><lit-tag v="num"/></tag>
+          </tags>
+         <lu>
+           <clip pos="1" side="tl" part="lem"/>
+           <clip pos="1" side="tl" part="a_num"/>
+           <clip pos="1" side="tl" part="a_nbr"/>
+         </lu>
+        </chunk>
+       </out>
+    </action>
+  </rule>
+ 
+ <rule comment="156. definite determiner"> 
+    <pattern> 
+      <pattern-item n="c_detdef"/>
+    </pattern>
+     <action>
+       <out>
+         <chunk name="definite-determiner">
+          <tags>
+            <tag><lit-tag v="det-def"/></tag>
+          </tags>
+         <lu>
+           <clip pos="1" side="tl" part="lem"/>
+           <clip pos="1" side="tl" part="a_det"/>
+            <clip pos="1" side="tl" part="a_def"/>
+		   <clip pos="1" side="tl" part="a_nbr"/>
+         </lu>
+        </chunk>
+       </out>
+    </action>
+  </rule>
+ 
+ <rule comment="157. indefinite determiner"> 
+    <pattern> 
+      <pattern-item n="c_detind"/>
+    </pattern>
+     <action>
+       <out>
+         <chunk name="indefinite-determiner">
+          <tags>
+            <tag><lit-tag v="det-ind"/></tag>
+          </tags>
+         <lu>
+           <clip pos="1" side="tl" part="lem"/>
+           <clip pos="1" side="tl" part="a_det"/>
+            <clip pos="1" side="tl" part="a_ind"/>
+		   <clip pos="1" side="tl" part="a_nbr"/>
          </lu>
         </chunk>
        </out>
